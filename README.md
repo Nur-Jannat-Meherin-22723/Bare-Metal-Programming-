@@ -1,1 +1,1 @@
-# Bare-Metal-Programming-
+This is the 3rd Year 2nd semester Lab Assignment on the start of Bare Metal Programming on Microprocessor and assembly Language Lab. This Assignment is the prerequisite to start study for Operating System.
