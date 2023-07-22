@@ -1,1 +1,1 @@
-This is the 3rd Year 1st semester Lab Assignment to start  Bare Metal Programming for Arm Processor in the course  "Microprocessor and assembly Language Lab". This Assignment is the prerequisite to start study in Operating System.
+This is the 3rd Year 1st semester Lab Assignment to start  Bare Metal Programming for Arm Processor in the course  "Microprocessor and Assembly Language Lab". This Assignment is the prerequisite to start study in Operating System.
