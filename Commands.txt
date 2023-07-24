@@ -1,0 +1,84 @@
+The command "arm-none-eabi-gcc" is a cross-compiler used for compiling C and C++ code targeting ARM-based embedded systems, specifically the "none" ABI (Application Binary Interface) for the "eabi" (Embedded Application Binary Interface).
+//////////Lecture 1
+
+If u want to check if gcc is available.
+1.arm-none-eabi-gcc
+If u want to check version
+2.arm-none-eabi-gcc --version
+if u want to go to the expected directory
+3.cd Downloads/BareAftereid
+If u want compile and assemble the single file(linking is not done here)
+4.arm-none-eabi-gcc -c -mcpu=cortex-m4 -mthumb main.c -o main.o
+if u want to just Compile the single file(assemble and linking is not done here)
+5.arm-none-eabi-gcc -S -mcpu=cortex-m4 -mthumb main.c -o main.s
+
+////////Lecture 2
+
+first go to directory by using cd Downloads/BareAftereid
+then 
+1.make (the .o files will be created)
+2.arm-none-eabi-objdump.exe (Commands to create list of different file format )
+3.arm-none-eabi-objdump.exe -h main.o ( Display the contents of the section headers )
+4.arm-none-eabi-objdump.exe -d main.o > main_log (create the main_log file in the folder with the sections)
+5.arm-none-eabi-objdump.exe -s main.o ( Display the full contents of all sections requested )
+6.make all (for multiple files)
+7.arm-none-eabi-objdump.exe -D led.o > led_log ( create the led_log file in the folder with the sections )
+
+
+///////Lecture 3
+
+1.ls (To check the files in the directory)
+2.touch stm32_startup.c
+3.vi Makefile (To run the Makefile )
+4.make clean (To clean the unneccessary files )
+5.touch stm32_ls.ld
+
+
+//////Lecture 5
+1. arm-none-eabi-gcc -nostdlib -T stm32_ls.ld *.o -o final.elf (To make final.elf file)
+2.arm-none-eabi-objdump.exe -h final.elf
+3.arm-none-eabi-nm.exe final.elf (Symbol table maintained by the linker)
+
+/////Lecture 6
+After connecting stm board with laptop write
+1.make load (This will load the code into the stm)
+Then open another git bash in the same directory and write 
+2.arm-none-eabi-gdb.exe (This will enable the gdb command)
+Gdb Commands:
+ target remote localhost:3333
+i)monitor reset init
+ii)monitor flash write_image erase final.elf
+iii) monitor reset halt
+iv) monitor resume
+v) monitor halt
+vi) monitor reset
+vii) monitor mdw 0x20000000 4
+viii)quit
+ix) monitor bp 0x080001ba 2 hw
+x) monitor rbp 0x080001ba
+xi)monitor bp
+xii) monitor bp 0x0800021c 2 hw
+Otherwise u can use telnet in putty
+the commands are same except the monitor part of the command.
+1.reset init
+2.flash write_image erase final.elf
+
+//////Lecture 7
+1.vim main.c (can edit the file in git bash)
+2.vim Makefile (can edit the file in git bash)
+3.arm-none-eabi-objdump.exe -h final.elf (To show the standard library section)
+Run the putty telnet commands
+1.reset init
+2.flash write_image erase final.elf
+3.reset
+4.halt
+
+git bash command
+1.make semi
+
+putty command
+1.flash write_image erase final_sh.elf
+2.arm semihosting enable ..............and then 
+3.reset (To start printing)
+4.halt (To stop printing)
+5.shutdown(To close the openocd connection)
